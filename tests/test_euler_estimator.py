@@ -61,3 +61,7 @@ assert points == [
    (5.6, {'A': 13.85, 'B': 2.35, 'C': -11.8}) # after 3rd step
 ]
 print('PASSED')
+
+initial_point = (0, {'A': 0, 'B': 0, 'C': 0})
+
+euler.plot(point=initial_point, step_size=0.01, num_steps=500)

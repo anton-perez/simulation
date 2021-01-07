@@ -26,8 +26,10 @@ class EulerEstimator:
     points = self.calc_estimated_points(point, step_size, num_steps)
     plt.clf()
     plt.style.use('bmh')
-    plt.plot(
-      [point[0] for point in points],
-      [point[1] for point in points])
-    plt.gca().set_aspect("equal")
+    for key in self.derivatives:
+      plt.plot(
+        [point[0] for point in points], 
+        [point[1][key] for point in points], label = key)
+    plt.legend()
+    #plt.gca().set_aspect("equal")
     plt.savefig(self.__class__.__name__+'.png')
