@@ -22,7 +22,7 @@ class EulerEstimator:
       point_list.append(current_point)
     return point_list
 
-  def plot(self, point, step_size, num_steps):
+  def plot(self, point, step_size, num_steps, additional_functions):
     points = self.calc_estimated_points(point, step_size, num_steps)
     plt.clf()
     plt.style.use('bmh')
@@ -30,6 +30,12 @@ class EulerEstimator:
       plt.plot(
         [point[0] for point in points], 
         [point[1][key] for point in points], label = key)
+
+    for function in additional_functions:
+      plt.plot(
+        [point[0] for point in points], 
+        [additional_functions[function](point[0]) for point in points], label = function)
+
     plt.legend()
     #plt.gca().set_aspect("equal")
     plt.savefig(self.__class__.__name__+'.png')
